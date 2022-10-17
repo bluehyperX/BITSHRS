@@ -10,6 +10,7 @@ On the Admin side, we have pages that manage:
   3. All registered users;
   4. All hotels;
   5. All rooms, as well as rooms sorted by specific hotel.
+
 The lists are organized by pagination and sorting and all CRUD operations are enabled (create, read, update, delete).
 On the server side, application is conntected to the MySQL database.
 Spring Security is used for security and passwords of the all Users and Admins are encoded.
