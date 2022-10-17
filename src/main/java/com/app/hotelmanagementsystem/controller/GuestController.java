@@ -1,11 +1,16 @@
 package com.app.hotelmanagementsystem.controller;
 
 import com.app.hotelmanagementsystem.entity.Guest;
+import com.app.hotelmanagementsystem.entity.Hotel;
 import com.app.hotelmanagementsystem.service.impl.GuestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/hms/guests")
@@ -18,9 +23,35 @@ public class GuestController {
         this.guestService = guestService;
     }
 
+//    @GetMapping
+//    public String listGuests(Model model) {
+//        model.addAttribute("guests", guestService.getAllGuests());
+//        return "guests";
+//    }
+
     @GetMapping
     public String listGuests(Model model) {
-        model.addAttribute("guests", guestService.getAllGuests());
+        return listGuestsByPage(model, 1, "firstName", "asc");
+    }
+
+    @GetMapping("/page/{pageNumber}")
+    public String listGuestsByPage(Model model, @PathVariable("pageNumber") Integer currentPage,
+                                   @Param("sortField") String sortField, @Param("sortDirection") String sortDirection) {
+        Page<Guest> page = guestService.getAllGuestsPage(currentPage, sortField, sortDirection);
+        long totalItems = page.getTotalElements();
+        int totalPages = page.getTotalPages();
+
+        List<Guest> listGuests = page.getContent();
+
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("guests", listGuests);
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+
+        String reverseSortDirection = sortDirection.equals("asc") ? "desc" : "asc";
+        model.addAttribute("reverseSortDirection", reverseSortDirection);
         return "guests";
     }
 
@@ -28,7 +59,7 @@ public class GuestController {
     public String addGuestForm(Model model) {
         Guest guest = new Guest();
         model.addAttribute("guest", guest);
-        return "create_guest";
+        return "guest_create";
     }
 
     @PostMapping
@@ -40,7 +71,7 @@ public class GuestController {
     @GetMapping("/edit/{guestId}")
     public String updateGuestForm(@PathVariable Long guestId, Model model) {
         model.addAttribute("guest", guestService.findGuestById(guestId));
-        return "edit_guest";
+        return "guest_edit";
     }
 
     @PostMapping("/{guestId}")
@@ -53,8 +84,8 @@ public class GuestController {
         existingGuest.setEmailAddress(guest.getEmailAddress());
         existingGuest.setPhoneNumber(guest.getPhoneNumber());
         existingGuest.setIdNumber(guest.getIdNumber());
-        existingGuest.setDateOfArriving(guest.getDateOfArriving());
-        existingGuest.setTimeOfArriving(guest.getTimeOfArriving());
+        existingGuest.setCheckInDate(guest.getCheckInDate());
+        existingGuest.setCheckInTime(guest.getCheckInTime());
 
         // save updated guest object
         guestService.updateGuest(existingGuest);
@@ -66,5 +97,11 @@ public class GuestController {
     public String deleteGuest(@PathVariable Long guestId) {
         guestService.deleteGuestById(guestId);
         return "redirect:/hms/guests";
+    }
+
+    @GetMapping("/details/{guestId}")
+    public String viewGuest(@PathVariable Long guestId, Model model) {
+        model.addAttribute("guest", guestService.findGuestById(guestId));
+        return "guest_view";
     }
 }

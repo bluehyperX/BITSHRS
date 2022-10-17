@@ -11,7 +11,7 @@
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
-    <a class="navbar-brand" href="#">Hotel Management System</a>
+    <a class="navbar-brand" th:href="@{/hms/admin_home}">Hotel Management System</a>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -22,7 +22,25 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/hms/guests}">All Guests</a>
+                <a class="nav-link bg-dark" th:href="@{/hms/guests}">Guests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hms/employees}">Employees</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hms/users}">Registered Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hms/hotels}">Hotels</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hms/rooms}">Rooms</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-dark" style="margin-left: 270px">Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-primary" th:href="@{/hms/logout}">Logout</a>
             </li>
         </ul>
     </div>
@@ -91,24 +109,46 @@
                     </div>
 
                     <div class="form-group">
-                        <label> Date of Arriving </label>
+                        <label> Check-In Date </label>
                         <input
                                 type = "text"
-                                name= "dateOfArriving"
-                                th:field= "*{dateOfArriving}"
+                                name= "checkInDate"
+                                th:field= "*{checkInDate}"
                                 class = "form-control"
-                                placeholder = "Enter Guest Date of Arriving"
+                                placeholder = "Enter Guest Check-In Date"
                         />
                     </div>
 
                     <div class="form-group">
-                        <label> Time of Arriving </label>
+                        <label> Check-In Time </label>
                         <input
                                 type = "text"
-                                name= "timeOfArriving"
-                                th:field= "*{timeOfArriving}"
+                                name= "checkInTime"
+                                th:field= "*{checkInTime}"
                                 class = "form-control"
-                                placeholder = "Enter Guest Time of Arriving"
+                                placeholder = "Enter Guest Check-In Time"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label> Check-Out Date </label>
+                        <input
+                                type = "text"
+                                name= "checkOutDate"
+                                th:field= "*{checkOutDate}"
+                                class = "form-control"
+                                placeholder = "Enter Guest Check-Out Date"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label> Check-Out Time </label>
+                        <input
+                                type = "text"
+                                name= "checkOutTime"
+                                th:field= "*{checkOutTime}"
+                                class = "form-control"
+                                placeholder = "Enter Guest Check-Out Time"
                         />
                     </div>
 

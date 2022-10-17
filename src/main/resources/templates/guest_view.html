@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Management System</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" th:href="@{/hms/admin_home}">Hotel Management System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hms/guests}">Guests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hms/employees}">Employees</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hms/users}">Registered Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hms/hotels}">Hotels</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hms/rooms}">Rooms</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-dark" style="margin-left: 270px">Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-primary" th:href="@{/hms/logout}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<h3> View Guest Details <a style="margin-left: 390px" th:href="@{/hms/guests}"
+                           class="btn btn-primary"><- Back</a> </h3>
+<br>
+<table class="table">
+    <tbody>
+    <tr>
+        <th> First Name: </th>
+        <td th:text = "${guest.firstName}"></td>
+    </tr>
+    <tr>
+        <th class="list-group-item-secondary"> Last Name: </th>
+        <td class="list-group-item-secondary" th:text="${guest.lastName}" ></td>
+    </tr>
+    <tr>
+        <th> Email Address: </th>
+        <td th:text="${guest.emailAddress}" ></td>
+    </tr>
+    <tr>
+        <th class="list-group-item-secondary"> Phone Number: </th>
+        <td class="list-group-item-secondary" th:text="${guest.phoneNumber}" ></td>
+    </tr>
+    <tr>
+        <th> ID Number: </th>
+        <td th:text="${guest.idNumber}" ></td>
+    </tr>
+    <tr>
+        <th class="list-group-item-secondary"> Check-In Date: </th>
+        <td class="list-group-item-secondary" th:text="${guest.checkInDate}" ></td>
+    </tr>
+    <tr>
+        <th> Check-In Time: </th>
+        <td th:text="${guest.checkInTime}" ></td>
+    </tr>
+    <tr>
+        <th class="list-group-item-secondary"> Check-Out Date: </th>
+        <td class="list-group-item-secondary"> </td>
+    </tr>
+    <tr>
+        <th> Check-Out Time: </th>
+        <td> </td>
+    </tr>
+    <tr>
+        <th class="list-group-item-primary"> Actions: </th>
+        <td class="list-group-item-primary">
+            <a th:href = "@{/hms/guests/edit/{guestId}(guestId = ${guest.guestId})}"
+            class="btn btn-primary">Update</a>
+            <a th:href = "@{/hms/guests/{guestId}(guestId = ${guest.guestId})}"
+            class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -52,13 +52,21 @@ public class Guest {
     )
     private Long idNumber;
     @Column(
-            name = "date_of_arriving",
+            name = "check_in_date",
             nullable = false
     )
-    private String dateOfArriving;
+    private String checkInDate;
     @Column(
-            name = "time_of_arriving",
+            name = "check_in_time",
             nullable = false
     )
-    private String timeOfArriving;
+    private String checkInTime;
+    @Column(
+            name = "check_out_date"
+    )
+    private String checkOutDate;
+    @Column(
+            name = "check_out_time"
+    )
+    private String checkOutTime;
 }
