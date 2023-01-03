@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Management System</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" th:href="@{/hrms/home}">Hotel Management System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hrms/guests}">Guests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hrms/employees}">Employees</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hrms/users}">Registered Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hrms/hotels}">Hotels</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hrms/rooms}">Rooms</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-dark" style="margin-left: 270px">Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-primary" th:href="@{/hrms/logout}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class="text-center"> Update Hotel </h1>
+            <div class="card-body">
+                <form th:action="@{/hrms/hotels/{hotelId} (hotelId = ${hotel.hotelId})}" th:object="${hotel}" method="POST">
+                    <div class="form-group">
+                        <label> Name </label>
+                        <input
+                                type = "text"
+                                name= "name"
+                                th:field= "*{name}"
+                                class = "form-control"
+                                placeholder = "Enter Hotel Name"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label> Star </label>
+                        <input
+                                type = "text"
+                                name= "star"
+                                th:field= "*{star}"
+                                class = "form-control"
+                                placeholder = "Enter Hotel Star"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label> Location </label>
+                        <input
+                                type = "text"
+                                name= "location"
+                                th:field= "*{location}"
+                                class = "form-control"
+                                placeholder = "Enter Hotel Location (country, city, street number)"
+                        />
+                    </div>
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

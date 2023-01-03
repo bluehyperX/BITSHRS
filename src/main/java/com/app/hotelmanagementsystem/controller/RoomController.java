@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/hms/rooms")
+@RequestMapping("/hrms/rooms")
 public class RoomController {
 
     private final RoomServiceImpl roomService;
@@ -71,7 +71,7 @@ public class RoomController {
     @PostMapping
     public String addNewRoom(@ModelAttribute("room") Room room) {
         roomService.addNewRoom(room);
-        return "redirect:/hms/rooms";
+        return "redirect:/hrms/rooms";
     }
 
     @GetMapping("/edit/{roomId}")
@@ -91,17 +91,18 @@ public class RoomController {
         existingRoom.setName(room.getName());
         existingRoom.setPrice(room.getPrice());
         existingRoom.setHotel(room.getHotel());
+        existingRoom.setType(room.getType());
 
         // save updated room object
         roomService.updateRoom(existingRoom);
-        return "redirect:/hms/rooms";
+        return "redirect:/hrms/rooms";
     }
 
     // handler method to handle delete room request
     @GetMapping("/{roomId}")
     public String deleteRoom(@PathVariable Long roomId) {
         roomService.deleteRoomById(roomId);
-        return "redirect:/hms/rooms";
+        return "redirect:/hrms/rooms";
     }
 
     @GetMapping("/details/{roomId}")

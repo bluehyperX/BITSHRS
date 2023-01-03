@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head">&nbsp;
+    
+</head>
+<body>
+    <div th:replace="fragments/header :: header">&nbsp;</div>
+<br>
+<div class="container">
+    <div class="row">
+        <h1> All Hotels </h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <a th:href="@{/hrms/hotels/new}" class="btn btn-primary btn-sm mb-3"> Add Hotel </a>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered" >
+        <thead class="table-dark">
+        <tr>
+            <th class="text-center"><a th:href="@{'/hrms/hotels/page/' + ${currentPage} + '?sortField=name&sortDirection=' + ${reverseSortDirection}}"> Name </a></th>
+            <th class="text-center"><a th:href="@{'/hrms/hotels/page/' + ${currentPage} + '?sortField=star&sortDirection=' + ${reverseSortDirection}}"> Star </a></th>
+            <th class="text-center"><a th:href="@{'/hrms/hotels/page/' + ${currentPage} + '?sortField=location&sortDirection=' + ${reverseSortDirection}}"> Location </a></th>
+            <th class="text-center"> Actions </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="hotel: ${hotels}">
+            <td th:text = "${hotel.name}"></td>
+            <td th:text = "${hotel.star}"></td>
+            <td th:text = "${hotel.location}" ></td>
+            <td>
+                <a th:href = "@{/hrms/hotels/edit/{hotelId}(hotelId = ${hotel.hotelId})}"
+                   class = "btn btn-primary">Update</a>
+
+                <a th:href = "@{/hrms/hotels/details/{hotelId}(hotelId = ${hotel.hotelId})}"
+                   class = "btn btn-info">Details </a>
+
+                <a th:href = "@{/hrms/hotels/{hotelId}(hotelId = ${hotel.hotelId})}"
+                   class = "btn btn-danger">Delete </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+
+<!--<div style="margin-left: 183px">
+    Total items: [[${totalItems}]] - Page [[${currentPage}]] of [[${totalPages}]]
+    &nbsp;
+</div>
+<br>
+<div style="margin-left: 183px">
+    <a th:if="${currentPage > 1}" th:href="@{'/hrms/hotels/page/1?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">First</a>
+    <span th:unless="${currentPage > 1}">First</span> &nbsp;&nbsp;
+
+    <a th:if="${currentPage > 1}" th:href="@{'/hrms/hotels/page/' + ${currentPage-1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Previous</a>
+    <span th:unless="${currentPage > 1}">Previous</span> &nbsp;&nbsp;
+
+    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+        <a th:if="${i != currentPage}" th:href="@{'/hrms/hotels/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+        <span th:unless="${i != currentPage}">[[${i}]]</span> &nbsp;&nbsp;
+    </span>
+
+    <a th:if="${currentPage < totalPages}" th:href="@{'/hrms/hotels/page/' + ${currentPage+1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Next</a>
+    <span th:unless="${currentPage < totalPages}">Next</span> &nbsp;&nbsp;
+
+    <a th:if="${currentPage < totalPages}" th:href="@{'/hrms/hotels/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Last</a>
+    <a th:unless="${currentPage < totalPages}">Last</a>
+</div>
+<br>
+<br>
+<br>-->
+
+
+<div class="container">
+    <div class="row">
+      <h1> All Rooms </h1>
+    </div>
+  
+    <div class="row">
+      <div class="col-lg-3">
+        <a th:href="@{/hrms/rooms/new}" class="btn btn-primary btn-sm mb-3"> Add Room </a>
+      </div>
+    </div>
+    <table class="table table-striped table-bordered" >
+      <thead class="table-dark">
+      <tr>
+        <th class="text-center"><a th:href="@{'/hrms/rooms/page/' + ${currentPage} + '?sortField=name&sortDirection=' + ${reverseSortDirection}}"> Name </a></th>
+        <th class="text-center"><a th:href="@{'/hrms/rooms/page/' + ${currentPage} + '?sortField=price&sortDirection=' + ${reverseSortDirection}}"> Price (in USD) </a></th>
+        <th class="text-center"><a th:href="@{'/hrms/rooms/page/' + ${currentPage} + '?sortField=hotel&sortDirection=' + ${reverseSortDirection}}"> Hotel </a></th>
+        <th class="text-center"> Actions </th>
+      </tr>
+      </thead>
+  
+      <tbody>
+      <tr th:each="room: ${rooms}">
+        <td th:text = "${room.name}"></td>
+        <td th:text = "${room.price}"></td>
+        <td th:text = "${room.hotel.name}"></td>
+        <td>
+          <a th:href = "@{/hrms/rooms/edit/{roomId}(roomId = ${room.roomId})}"
+             class = "btn btn-primary">Update</a>
+  
+          <a th:href = "@{/hrms/rooms/details/{roomId}(roomId = ${room.roomId})}"
+             class = "btn btn-info">Details </a>
+  
+          <a th:href = "@{/hrms/rooms/{roomId}(roomId = ${room.roomId})}"
+             class = "btn btn-danger">Delete </a>
+        </td>
+      </tr>
+      </tbody>
+  
+    </table>
+  
+  </div>
+  <br>
+  <!--<div style="margin-left: 183px">
+    Total items: [[${totalItems}]] - Page [[${currentPage}]] of [[${totalPages}]]
+    &nbsp;
+  </div>
+  <br>
+  <div style="margin-left: 183px">
+    <a th:if="${currentPage > 1}" th:href="@{'/hrms/rooms/page/1?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">First</a>
+    <span th:unless="${currentPage > 1}">First</span> &nbsp;&nbsp;
+  
+    <a th:if="${currentPage > 1}" th:href="@{'/hrms/rooms/page/' + ${currentPage-1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Previous</a>
+    <span th:unless="${currentPage > 1}">Previous</span> &nbsp;&nbsp;
+  
+    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+          <a th:if="${i != currentPage}" th:href="@{'/hrms/rooms/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+          <span th:unless="${i != currentPage}">[[${i}]]</span> &nbsp;&nbsp;
+      </span>
+  
+    <a th:if="${currentPage < totalPages}" th:href="@{'/hrms/rooms/page/' + ${currentPage+1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Next</a>
+    <span th:unless="${currentPage < totalPages}">Next</span> &nbsp;&nbsp;
+  
+    <a th:if="${currentPage < totalPages}" th:href="@{'/hrms/rooms/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Last</a>
+    <a th:unless="${currentPage < totalPages}">Last</a>
+  </div>
+  <br>
+  <br>
+  <br>-->
+
+
+</body>
+</html>

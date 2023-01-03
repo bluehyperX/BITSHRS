@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/hms/registration")
+@RequestMapping("/hrms/registration")
 public class UserRegistrationController {
 
     private final CustomUserDetailsServiceImpl userService;
@@ -31,6 +31,6 @@ public class UserRegistrationController {
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") User user) {
         userService.registerNewUser(user);
-        return "redirect:/hms/login";
+        return "redirect:/hrms/login";
     }
 }

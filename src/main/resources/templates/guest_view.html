@@ -11,7 +11,7 @@
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
-    <a class="navbar-brand" th:href="@{/hms/admin_home}">Hotel Management System</a>
+    <a class="navbar-brand" th:href="@{/hrms/home}">Hotel Management System</a>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -22,31 +22,31 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/guests}">Guests</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/guests}">Guests</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/employees}">Employees</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/employees}">Employees</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/users}">Registered Users</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/users}">Registered Users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/hotels}">Hotels</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/hotels}">Hotels</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/rooms}">Rooms</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/rooms}">Rooms</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white bg-dark" style="margin-left: 270px">Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white bg-primary" th:href="@{/hms/logout}">Logout</a>
+                <a class="nav-link text-white bg-primary" th:href="@{/hrms/logout}">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
 <br>
-<h3> View Guest Details <a style="margin-left: 390px" th:href="@{/hms/guests}"
+<h3> View Guest Details <a style="margin-left: 390px" th:href="@{/hrms/guests}"
                            class="btn btn-primary"><- Back</a> </h3>
 <br>
 <table class="table">
@@ -81,18 +81,18 @@
     </tr>
     <tr>
         <th class="list-group-item-secondary"> Check-Out Date: </th>
-        <td class="list-group-item-secondary"> </td>
+        <td class="list-group-item-secondary" th:text="${guest.checkOutDate}"></td>
     </tr>
     <tr>
         <th> Check-Out Time: </th>
-        <td> </td>
+        <td class="list-group-item-secondary" th:text="${guest.checkOutTime}"> </td>
     </tr>
     <tr>
         <th class="list-group-item-primary"> Actions: </th>
         <td class="list-group-item-primary">
-            <a th:href = "@{/hms/guests/edit/{guestId}(guestId = ${guest.guestId})}"
+            <a th:href = "@{/hrms/guests/edit/{guestId}(guestId = ${guest.guestId})}"
             class="btn btn-primary">Update</a>
-            <a th:href = "@{/hms/guests/{guestId}(guestId = ${guest.guestId})}"
+            <a th:href = "@{/hrms/guests/{guestId}(guestId = ${guest.guestId})}"
             class="btn btn-danger">Delete</a>
         </td>
     </tr>

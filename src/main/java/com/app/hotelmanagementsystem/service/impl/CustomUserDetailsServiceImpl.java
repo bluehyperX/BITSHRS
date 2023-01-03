@@ -48,8 +48,8 @@ public class CustomUserDetailsServiceImpl implements UserService {
 
     @Override
     public User registerNewUser(User user) {
-        User newUser = new User(user.getFirstName(), user.getLastName(),
-                user.getEmailAddress(), passwordEncoder.encode(user.getPassword()), Arrays.asList(roleRepository.findByName("User")));
+        User newUser = new User(user.getUserId(), user.getFirstName(), user.getLastName(),
+                user.getEmailAddress(), passwordEncoder.encode(user.getPassword()), user.getRole(), Arrays.asList(roleRepository.findByName("User")));
         return userRepository.save(newUser);
     }
 

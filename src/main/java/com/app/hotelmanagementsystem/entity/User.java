@@ -1,6 +1,5 @@
 package com.app.hotelmanagementsystem.entity;
 
-import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -10,22 +9,65 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Builder
 @Table(
-        name = "user",
-        uniqueConstraints = @UniqueConstraint(
-                name = "email_address_unique",
-                columnNames = "email_address"
-        )
+        name = "user"
+       
 )
 public class User {
 
-    @Id
+    public Long getUserId() {
+		return userId;
+	}
+
+	public User() {
+		super();
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
+
+	@Id
     @SequenceGenerator(
             name = "user_sequence",
             sequenceName = "user_sequence",
@@ -55,8 +97,22 @@ public class User {
             name = "password",
             nullable = false
     )
+    
     private String password;
-    @ManyToMany(
+    @Column(
+            name = "role",
+            nullable = false
+    )
+    private String role;
+    public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@ManyToMany(
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL
     )
@@ -74,19 +130,31 @@ public class User {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Collection<Role> roles = new HashSet<>();
 
-    public User(String firstName, String lastName, String emailAddress, String password, Collection<Role> roles) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailAddress = emailAddress;
-        this.password = password;
-        this.roles = roles;
-    }
+//    public User(String firstName, String lastName, String emailAddress, String password, Collection<Role> roles) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.emailAddress = emailAddress;
+//        this.password = password;
+//        this.roles = roles;
+//    }
 
     public void addRole(Role role) {
         this.roles.add(role);
     }
 
-    public boolean hasRole(String roleName) {
+    public User(Long userId, String firstName, String lastName, String emailAddress, String password, String role,
+		Collection<Role> roles) {
+	super();
+	this.userId = userId;
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.emailAddress = emailAddress;
+	this.password = password;
+	this.role = role;
+	this.roles = roles;
+}
+
+	public boolean hasRole(String roleName) {
         Iterator<Role> iterator = roles.iterator();
 
         while (iterator.hasNext()) {

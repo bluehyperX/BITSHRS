@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Restauarant Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" th:href="@{/hrms/home}">Restauarant Management System</a>
+
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link bg-dark" th:href="@{/hrms/guests}">Guests</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-dark" th:href="@{/hrms/employees}">Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-dark" th:href="@{/hrms/users}">Registered Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-dark" th:href="@{/hrms/restaurants}">Restauarants</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-dark" th:href="@{/hrms/tables}">Tables</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white bg-dark" style="margin-left: 270px">Welcome
+                        <b>[[${#request.userPrincipal.principal.fullName}]]</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white bg-primary" th:href="@{/hrms/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <h3>[[${restaurant.name}]]</h3>
+    <!-- <a style="margin-left: 390px" th:href="@{/hrms/hotels}" class="btn btn-primary"><- Back</a>  -->
+    <br>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th> Namae: </th>
+                <td th:text="${restaurant.name}"></td>
+            </tr>
+            <tr>
+                <th class="list-group-item-secondary"> Star: </th>
+                <td class="list-group-item-secondary" th:text="${restaurant.star}"></td>
+            </tr>
+            <tr>
+                <th> Location: </th>
+                <td th:text="${restaurant.location}"></td>
+            </tr>
+            <tr>
+                <th class="list-group-item-secondary"> Tables: </th>
+                <td class="list-group-item-secondary">
+                    <a th:href="@{/hrms/restaurants/{restaurantId}/tables (restaurantId = ${restaurant.restaurantId})}"
+                        class="btn btn-info text-white">View Tables</a>
+                </td>
+            </tr>
+            <tr>
+                <th class="list-group-item-primary"> Actions: </th>
+                <td class="list-group-item-primary">
+                    <a th:href="@{/hrms/restaurants/edit/{restaurantId}(restaurantId = ${restaurant.restaurantId})}"
+                        class="btn btn-primary">Update</a>
+                    <a th:href="@{/hrms/restaurants/{restaurantId}(restaurant = ${restaurant.restaurantId})}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>
+
+</html>

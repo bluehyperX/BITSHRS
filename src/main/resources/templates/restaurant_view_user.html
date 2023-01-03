@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head">&nbsp;
+
+</head>
+
+<body>
+    <div th:replace="fragments/header :: header">&nbsp;</div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/7c/d3/10/liwa-hotel.jpg?w=1200&h=-1&s=1"
+                    width="720px">
+                <h4 style="margin-top:20px">Description</h4>
+                <p>Lorem ipsum dolor sit amet invidunt. Stet elitr odio nostrud. Ea et diam nulla at veniam nonumy
+                    sanctus dolores accusam sed magna ipsum takimata vulputate vero rebum. Nulla dolor magna takimata
+                    sed autem et at takimata rebum sit nisl amet consetetur. Invidunt nisl et. Vel et sed consectetuer
+                    nobis ipsum consetetur. Sit erat stet ea dolore luptatum amet rebum consetetur dolore sea. At elitr
+                    lorem lorem gubergren est stet magna labore dolore duis lorem tation sit enim tempor esse praesent.
+                    Ut cum et et erat sadipscing ipsum et tempor dolore zzril velit velit sit diam amet facer et. Sed
+                    dolore possim eos diam. Ut no takimata aliquyam lorem sed diam.
+
+                    Labore exerci nulla est accusam gubergren clita invidunt at ut justo sit et sea. Est diam sit autem
+                    voluptua consetetur labore eum justo labore magna soluta. Nonumy eirmod takimata eirmod aliquyam
+                    lorem clita eleifend labore ea molestie exerci erat at augue iusto duis et. Nobis sea eros et et
+                    rebum praesent rebum amet at. Et et eros accusam diam tempor clita magna ipsum placerat nonummy duo
+                    lorem elitr consetetur invidunt vel. Nonumy sea takimata stet tempor dolor commodo dolor dolores
+                    diam accumsan. Esse sit tempor diam ipsum erat invidunt sed erat eros eros. Ea ipsum et facer
+                    accusam erat nonumy sed et rebum sed tempor diam. Invidunt accumsan est et accusam nisl dolor sed
+                    takimata. Magna option duis ipsum amet tincidunt accusam stet et vel lorem labore. Kasd facilisis
+                    tempor dolores adipiscing mazim et luptatum dolor invidunt ut sadipscing eu dolor amet et lorem.
+
+                    Amet et quis diam. Feugait sea rebum at eu eirmod sadipscing sanctus dolor vel amet elitr qui.
+                    Gubergren aliquip invidunt blandit clita quis sanctus lorem hendrerit et amet elitr stet cum. Eirmod
+                    euismod qui invidunt ut et lorem sed dolor labore magna sadipscing.</p>
+                <!-- <p th:text="${hotel.description}"></p> -->
+            </div>
+            <div class="col-md-4 align-self-start">
+                <div class="service-container">
+                    <h3 class="text-center">Restaurant Details </h3>
+                    <hr>
+                    <h4>Name - [[${restaurant.name}]]</h4>
+                    <hr>
+                    <h4>Rating - [[${restaurant.star}]]</h4>
+                    <hr>
+                    <h4>[[${restaurant.location}]] Kms from BITS Pilani</h4>
+                    <hr>
+                    <div class="text-center"> <a
+                            th:href="@{/hrms/restaurants/usr/{restaurantId}/tables (restaurantId = ${restaurant.restaurantId})}"
+                            class="btn btn-info text-white">Select table</a></div>
+                </div>
+                <!-- <br>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th> Name: </th>
+                <td th:text = "${hotel.name}"></td>
+            </tr>
+            <tr>
+                <th class="list-group-item-secondary"> Star: </th>
+                <td class="list-group-item-secondary" th:text="${hotel.star}" ></td>
+            </tr>
+            <tr>
+                <th> Location: </th>
+                <td th:text="${hotel.location}" ></td>
+            </tr>
+            <tr>
+                <th class="list-group-item-secondary"> Rooms: </th>
+                <td class="list-group-item-secondary">
+                    
+                </td>
+            </tr>
+            </tbody>
+        </table> -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

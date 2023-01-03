@@ -1,24 +1,43 @@
 package com.app.hotelmanagementsystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Builder
 @Table(
         name = "role"
 )
 public class Role {
 
-    @Id
+    public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Collection<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Collection<User> users) {
+		this.users = users;
+	}
+
+	@Id
     @SequenceGenerator(
             name = "role_sequence",
             sequenceName = "role_sequence",

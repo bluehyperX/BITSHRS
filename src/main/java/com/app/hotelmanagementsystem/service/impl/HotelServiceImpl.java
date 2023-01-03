@@ -1,17 +1,18 @@
 package com.app.hotelmanagementsystem.service.impl;
 
-import com.app.hotelmanagementsystem.entity.Hotel;
-import com.app.hotelmanagementsystem.entity.Room;
-import com.app.hotelmanagementsystem.repository.HotelRepository;
-import com.app.hotelmanagementsystem.service.HotelService;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Set;
+import com.app.hotelmanagementsystem.entity.Hotel;
+import com.app.hotelmanagementsystem.entity.Room;
+import com.app.hotelmanagementsystem.repository.HotelRepository;
+import com.app.hotelmanagementsystem.service.HotelService;
 
 @Service
 public class HotelServiceImpl implements HotelService {
@@ -21,8 +22,7 @@ public class HotelServiceImpl implements HotelService {
     public HotelServiceImpl(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
     }
-
-
+  
     @Override
     public List<Hotel> getAllHotels() {
         return hotelRepository.findAll();
@@ -61,4 +61,5 @@ public class HotelServiceImpl implements HotelService {
     public void deleteHotelById(Long hotelId) {
         hotelRepository.deleteById(hotelId);
     }
+  
 }

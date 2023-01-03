@@ -1,21 +1,33 @@
 package com.app.hotelmanagementsystem.controller;
 
-import com.app.hotelmanagementsystem.entity.Hotel;
-import com.app.hotelmanagementsystem.service.impl.HotelServiceImpl;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import com.app.hotelmanagementsystem.entity.Hotel;
+import com.app.hotelmanagementsystem.entity.Role;
+import com.app.hotelmanagementsystem.entity.User;
+import com.app.hotelmanagementsystem.repository.RoleRepository;
+import com.app.hotelmanagementsystem.service.impl.HotelServiceImpl;
 
 @Controller
-@RequestMapping("/hms/hotels")
+@RequestMapping("/hrms/hotels")
 public class HotelController {
 
     private final HotelServiceImpl hotelService;
+    private RoleRepository roleRepository;
+    private Role role;
+
+  //  private User user;
 
     @Autowired
     public HotelController(HotelServiceImpl hotelService) {
@@ -57,6 +69,24 @@ public class HotelController {
         return listHotelsByPageForUsers(model, 1, "name", "asc");
     }
 
+   @GetMapping("/test")
+   public String test(@ModelAttribute("user") User user) {
+	   
+//	   Hotel existingHotel = hotelService.findHotelById(hotelId);
+//       existingHotel.setHotelId(hotelId);
+//       existingHotel.setName(hotel.getName());
+//       existingHotel.setStar(hotel.getStar());
+//       existingHotel.setDistance(hotel.getDistance());
+	   
+	   User user1= new User();
+	   if(user1.getRole()=="Customer") {
+		   System.out.println(user1.getRole());
+	   return "hellp";}
+	   //System.out.println("i m here");
+	   else
+		   {System.out.println("i m here");
+		   return "test";}
+   }
     //shows a list of hotels for users paging
     @GetMapping("/usr/page/{pageNumber}")
     public String listHotelsByPageForUsers(Model model, @PathVariable("pageNumber") Integer currentPage,
@@ -98,14 +128,14 @@ public class HotelController {
     public String addHotelForm(Model model) {
         Hotel hotel = new Hotel();
         model.addAttribute("hotel", hotel);
-        return "hotel_create";
-    }
+        	return "hotel_create";
+        }
 
     // creates a new hotel
     @PostMapping
     public String addNewHotel(@ModelAttribute("hotel") Hotel hotel) {
         hotelService.addNewHotel(hotel);
-        return "redirect:/hms/hotels";
+        return "redirect:/hrms/hotels";
     }
 
     // form for updating already existing hotel
@@ -123,18 +153,21 @@ public class HotelController {
         existingHotel.setHotelId(hotelId);
         existingHotel.setName(hotel.getName());
         existingHotel.setStar(hotel.getStar());
-        existingHotel.setLocation(hotel.getLocation());
+        existingHotel.setDistance(hotel.getDistance());
+        existingHotel.setAmenities(hotel.getAmenities());
+        existingHotel.setDesc(hotel.getDesc());
+        existingHotel.setPhoto(hotel.getPhoto());
 
         // save updated guest object
         hotelService.updateHotel(existingHotel);
-        return "redirect:/hms/hotels";
+        return "redirect:/hrms/hotels";
     }
 
     // handler method to handle delete guest request
     @GetMapping("/{hotelId}")
     public String deleteHotel(@PathVariable Long hotelId) {
         hotelService.deleteHotelById(hotelId);
-        return "redirect:/hms/hotels";
+        return "redirect:/hrms/hotels";
     }
 
     // view hotel details for particular hotel
@@ -145,7 +178,7 @@ public class HotelController {
     }
 
     // view hotel details for particular hotel as user
-    @GetMapping("/usr/details/{hotelId}")
+    @GetMapping("/usr/{hotelId}")
     public String viewHotelForUsers(@PathVariable Long hotelId, Model model) {
         model.addAttribute("hotel", hotelService.findHotelById(hotelId));
         return "hotel_view_user";

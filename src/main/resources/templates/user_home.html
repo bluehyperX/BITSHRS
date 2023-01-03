@@ -25,7 +25,7 @@
                 <a class="nav-link bg-dark">Book Now</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/hotels/usr}">Explore Hotels</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/hotels/usr}">Explore Hotels</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link bg-dark">My Info</a>
@@ -34,7 +34,7 @@
                 <a class="nav-link text-white bg-dark" style="margin-left: 325px">Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white bg-primary" th:href="@{/hms/logout}">Logout</a>
+                <a class="nav-link text-white bg-primary" th:href="@{/hrms/logout}">Logout</a>
             </li>
         </ul>
     </div>
@@ -47,7 +47,7 @@
 
 <!--    <div class="row">-->
 <!--        <div class="col-lg-3">-->
-<!--            <a th:href="@{/hms/employees/new}" class="btn btn-primary btn-sm mb-3"> Add Employee </a>-->
+<!--            <a th:href="@{/hrms/employees/new}" class="btn btn-primary btn-sm mb-3"> Add Employee </a>-->
 <!--        </div>-->
 <!--    </div>-->
 <!--    <table class="table table-striped table-bordered" >-->
@@ -66,13 +66,13 @@
 <!--            <td th:text = "${employee.lastName}"></td>-->
 <!--            <td th:text = "${employee.jobPosition}"></td>-->
 <!--            <td>-->
-<!--                <a th:href = "@{/hms/employees/edit/{employeeId}(employeeId = ${employee.employeeId})}"-->
+<!--                <a th:href = "@{/hrms/employees/edit/{employeeId}(employeeId = ${employee.employeeId})}"-->
 <!--                   class = "btn btn-primary">Update</a>-->
 
-<!--                <a th:href = "@{/hms/employees/details/{employeeId}(employeeId = ${employee.employeeId})}"-->
+<!--                <a th:href = "@{/hrms/employees/details/{employeeId}(employeeId = ${employee.employeeId})}"-->
 <!--                   class = "btn btn-primary">Details </a>-->
 
-<!--                <a th:href = "@{/hms/employees/{employeeId}(employeeId = ${employee.employeeId})}"-->
+<!--                <a th:href = "@{/hrms/employees/{employeeId}(employeeId = ${employee.employeeId})}"-->
 <!--                   class = "btn btn-danger">Delete </a>-->
 <!--            </td>-->
 <!--        </tr>-->

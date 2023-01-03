@@ -1,22 +1,47 @@
 package com.app.hotelmanagementsystem.entity;
 
-import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Builder
 @Table(
         name = "room"
 )
 public class Room {
 
-    @Id
+    public Long getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(Long roomId) {
+		this.roomId = roomId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
+	@Id
     @SequenceGenerator(
             name = "room_sequence",
             sequenceName = "room_sequence",
@@ -36,8 +61,21 @@ public class Room {
             name = "price"
     )
     private Float price;
+    
+    @Column(
+            name = "type"
+    )
+    private String type;
 
-    @ManyToOne
+    public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	@ManyToOne
     @JoinColumn(
             name = "hotel_id",
             referencedColumnName = "hotelId"

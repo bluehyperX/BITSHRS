@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/hms/guests")
+@RequestMapping("/hrms/guests")
 public class GuestController {
 
     private final GuestServiceImpl guestService;
@@ -65,7 +65,7 @@ public class GuestController {
     @PostMapping
     public String addNewGuest(@ModelAttribute("guest") Guest guest) {
         guestService.addNewGuest(guest);
-        return "redirect:/hms/guests";
+        return "redirect:/hrms/guests";
     }
 
     @GetMapping("/edit/{guestId}")
@@ -89,14 +89,14 @@ public class GuestController {
 
         // save updated guest object
         guestService.updateGuest(existingGuest);
-        return "redirect:/hms/guests";
+        return "redirect:/hrms/guests";
     }
 
     // handler method to handle delete guest request
     @GetMapping("/{guestId}")
     public String deleteGuest(@PathVariable Long guestId) {
         guestService.deleteGuestById(guestId);
-        return "redirect:/hms/guests";
+        return "redirect:/hrms/guests";
     }
 
     @GetMapping("/details/{guestId}")

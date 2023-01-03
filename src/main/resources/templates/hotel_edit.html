@@ -11,7 +11,7 @@
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
-    <a class="navbar-brand" th:href="@{/hms/admin_home}">Hotel Management System</a>
+    <a class="navbar-brand" th:href="@{/hrms/home}">Hotel Management System</a>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -22,25 +22,25 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/guests}">Guests</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/guests}">Guests</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/employees}">Employees</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/employees}">Employees</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/users}">Registered Users</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/users}">Registered Users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/hotels}">Hotels</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/hotels}">Hotels</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/rooms}">Rooms</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/rooms}">Rooms</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white bg-dark" style="margin-left: 270px">Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white bg-primary" th:href="@{/hms/logout}">Logout</a>
+                <a class="nav-link text-white bg-primary" th:href="@{/hrms/logout}">Logout</a>
             </li>
         </ul>
     </div>
@@ -52,7 +52,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center"> Update Hotel </h1>
             <div class="card-body">
-                <form th:action="@{/hms/hotels/{hotelId} (hotelId = ${hotel.hotelId})}" th:object="${hotel}" method="POST">
+                <form th:action="@{/hrms/hotels/{hotelId} (hotelId = ${hotel.hotelId})}" th:object="${hotel}" method="POST">
                     <div class="form-group">
                         <label> Name </label>
                         <input
@@ -79,10 +79,10 @@
                         <label> Location </label>
                         <input
                                 type = "text"
-                                name= "location"
-                                th:field= "*{location}"
+                                name= "distance"
+                                th:field= "*{distance}"
                                 class = "form-control"
-                                placeholder = "Enter Hotel Location (country, city, street number)"
+                                placeholder = "Enter Distance from BITS"
                         />
                     </div>
 

@@ -1,56 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Hotel Management System</title>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
+
+<head th:replace="fragments/header :: head">&nbsp;
+    
 </head>
 <body>
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <!-- Brand -->
-    <a class="navbar-brand" th:href="@{/hms/user_home}">Hotel Management System</a>
-
-    <!-- Toggler/collapsibe Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link bg-dark">Book Now</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/hotels/usr}">Explore Hotels</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link bg-dark">My Info</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white bg-dark" style="margin-left: 325px">Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white bg-primary" th:href="@{/hms/logout}">Logout</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+    <div th:replace="fragments/header :: header">&nbsp;</div>
 <br>
 <div class="container">
     <div class="row">
         <h1> Explore Hotels </h1>
     </div>
-
-    <table class="table table-striped table-bordered" >
+    <br>
+    <!-- <table class="table table-striped table-bordered" >
         <thead class="table-dark">
         <tr>
-            <th class="text-center"><a th:href="@{'/hms/hotels/usr/page/' + ${currentPage} + '?sortField=name&sortDirection=' + ${reverseSortDirection}}"> Name </a></th>
-            <th class="text-center"><a th:href="@{'/hms/hotels/usr/page/' + ${currentPage} + '?sortField=star&sortDirection=' + ${reverseSortDirection}}"> Star </a></th>
-            <th class="text-center"><a th:href="@{'/hms/hotels/usr/page/' + ${currentPage} + '?sortField=location&sortDirection=' + ${reverseSortDirection}}"> Location </a></th>
+            <th class="text-center"><a th:href="@{'/hrms/hotels/usr/page/' + ${currentPage} + '?sortField=name&sortDirection=' + ${reverseSortDirection}}"> Name </a></th>
+            <th class="text-center"><a th:href="@{'/hrms/hotels/usr/page/' + ${currentPage} + '?sortField=star&sortDirection=' + ${reverseSortDirection}}"> Star </a></th>
+            <th class="text-center"><a th:href="@{'/hrms/hotels/usr/page/' + ${currentPage} + '?sortField=location&sortDirection=' + ${reverseSortDirection}}"> Location </a></th>
             <th class="text-center"> Actions </th>
         </tr>
         </thead>
@@ -61,12 +28,27 @@
             <td th:text = "${hotel.star}"></td>
             <td th:text = "${hotel.location}" ></td>
             <td>
-                <a th:href = "@{/hms/hotels/usr/details/{hotelId}(hotelId = ${hotel.hotelId})}"
+                <a th:href = "@{/hrms/hotels/usr/details/{hotelId}(hotelId = ${hotel.hotelId})}"
                    class = "btn btn-info">Details </a>
             </td>
         </tr>
         </tbody>
-    </table>
+    </table> -->
+    <div class="service-container" th:each="hotel: ${(hotels)}">
+        <div class="row">
+            <div class="col-lg-3">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/7c/d3/10/liwa-hotel.jpg?w=1200&h=-1&s=1" width="250px" height="170px">
+            </div>
+            <div class="col-lg-7">
+                <p>Hotel Name - [[${hotel.name}]]</p>
+                <p>Hotel Distance - [[${hotel.distance}]] Kms from BITS Pilani</p>
+            </div>
+            <div class="col-lg-2 d-flex justify-content-center align-items-center">
+                <a th:href = "@{/hrms/hotels/usr/{hotelId}(hotelId = ${hotel.hotelId})}"
+                   class = "btn btn-info">Details </a>
+            </div>
+        </div>
+    </div>
 </div>
 <br>
 <div style="margin-left: 183px">
@@ -75,21 +57,21 @@
 </div>
 <br>
 <div style="margin-left: 183px">
-    <a th:if="${currentPage > 1}" th:href="@{'/hms/hotels/usr/page/1?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">First</a>
+    <a th:if="${currentPage > 1}" th:href="@{'/hrms/hotels/usr/page/1?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">First</a>
     <span th:unless="${currentPage > 1}">First</span> &nbsp;&nbsp;
 
-    <a th:if="${currentPage > 1}" th:href="@{'/hms/hotels/usr/page/' + ${currentPage-1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Previous</a>
+    <a th:if="${currentPage > 1}" th:href="@{'/hrms/hotels/usr/page/' + ${currentPage-1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Previous</a>
     <span th:unless="${currentPage > 1}">Previous</span> &nbsp;&nbsp;
 
     <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-        <a th:if="${i != currentPage}" th:href="@{'/hms/hotels/usr/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+        <a th:if="${i != currentPage}" th:href="@{'/hrms/hotels/usr/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
         <span th:unless="${i != currentPage}">[[${i}]]</span> &nbsp;&nbsp;
     </span>
 
-    <a th:if="${currentPage < totalPages}" th:href="@{'/hms/hotels/usr/page/' + ${currentPage+1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Next</a>
+    <a th:if="${currentPage < totalPages}" th:href="@{'/hrms/hotels/usr/page/' + ${currentPage+1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Next</a>
     <span th:unless="${currentPage < totalPages}">Next</span> &nbsp;&nbsp;
 
-    <a th:if="${currentPage < totalPages}" th:href="@{'/hms/hotels/usr/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Last</a>
+    <a th:if="${currentPage < totalPages}" th:href="@{'/hrms/hotels/usr/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Last</a>
     <a th:unless="${currentPage < totalPages}">Last</a>
 </div>
 <br>

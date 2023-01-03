@@ -11,7 +11,7 @@
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
-    <a class="navbar-brand" th:href="@{/hms/admin_home}">Hotel Management System</a>
+    <a class="navbar-brand" th:href="@{/hrms/home}">Hotel Management System</a>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -22,25 +22,25 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/guests}">Guests</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/guests}">Guests</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/employees}">Employees</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/employees}">Employees</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/users}">Registered Users</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/users}">Registered Users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/hotels}">Hotels</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/hotels}">Hotels</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link bg-dark" th:href="@{/hms/rooms}">Rooms</a>
+                <a class="nav-link bg-dark" th:href="@{/hrms/rooms}">Rooms</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white bg-dark" style="margin-left: 270px">Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white bg-primary" th:href="@{/hms/logout}">Logout</a>
+                <a class="nav-link text-white bg-primary" th:href="@{/hrms/logout}">Logout</a>
             </li>
         </ul>
     </div>
@@ -50,9 +50,9 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class="text-center"> Add New Employee </h1>
+            <h1 class="text-center"> Update Guest </h1>
             <div class="card-body">
-                <form th:action="@{/hms/employees}" th:object="${employee}" method="POST">
+                <form th:action="@{/hrms/guests/{guestId} (guestId = ${guest.guestId})}" th:object="${guest}" method="POST">
                     <div class="form-group">
                         <label> First Name </label>
                         <input
@@ -60,7 +60,7 @@
                                 name= "firstName"
                                 th:field= "*{firstName}"
                                 class = "form-control"
-                                placeholder = "Enter Employee First Name"
+                                placeholder = "Enter Guest First Name"
                         />
                     </div>
 
@@ -71,29 +71,7 @@
                                 name= "lastName"
                                 th:field= "*{lastName}"
                                 class = "form-control"
-                                placeholder = "Enter Employee Last Name"
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label> Date of Birth </label>
-                        <input
-                                type = "text"
-                                name= "dateOfBirth"
-                                th:field= "*{dateOfBirth}"
-                                class = "form-control"
-                                placeholder = "Enter Employee Date of Birth"
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label> Phone Number </label>
-                        <input
-                                type = "text"
-                                name= "phoneNumber"
-                                th:field= "*{phoneNumber}"
-                                class = "form-control"
-                                placeholder = "Enter Employee Phone Number"
+                                placeholder = "Enter Guest Last Name"
                         />
                     </div>
 
@@ -104,7 +82,18 @@
                                 name= "emailAddress"
                                 th:field= "*{emailAddress}"
                                 class = "form-control"
-                                placeholder = "Enter Employee Email Address"
+                                placeholder = "Enter Guest Email Address"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label> Phone Number </label>
+                        <input
+                                type = "text"
+                                name= "phoneNumber"
+                                th:field= "*{phoneNumber}"
+                                class = "form-control"
+                                placeholder = "Enter Guest Phone Number"
                         />
                     </div>
 
@@ -112,87 +101,54 @@
                         <label> ID Number </label>
                         <input
                                 type = "text"
-                                name= "idNumber"
+                                name= "IdNumber"
                                 th:field= "*{idNumber}"
                                 class = "form-control"
-                                placeholder = "Enter Employee ID Number"
+                                placeholder = "Enter Guest ID Number"
                         />
                     </div>
 
                     <div class="form-group">
-                        <label> National Identification Number </label>
+                        <label> Check-In Date </label>
                         <input
                                 type = "text"
-                                name= "nationalIdentificationNumber"
-                                th:field= "*{nationalIdentificationNumber}"
+                                name= "checkInDate"
+                                th:field= "*{checkInDate}"
                                 class = "form-control"
-                                placeholder = "Enter Employee National Identification Number"
+                                placeholder = "Enter Guest Check-In Date"
                         />
                     </div>
 
                     <div class="form-group">
-                        <label> Place of Residence </label>
+                        <label> Check-In Time </label>
                         <input
                                 type = "text"
-                                name= "placeOfResidence"
-                                th:field= "*{placeOfResidence}"
+                                name= "checkInTime"
+                                th:field= "*{checkInTime}"
                                 class = "form-control"
-                                placeholder = "Enter Employee Place of Residence"
+                                placeholder = "Enter Guest Check-In Time"
                         />
                     </div>
 
                     <div class="form-group">
-                        <label> Street and Number of Residence </label>
+                        <label> Check-Out Date </label>
                         <input
                                 type = "text"
-                                name= "streetAndNumberOfResidence"
-                                th:field= "*{streetAndNumberOfResidence}"
+                                name= "checkOutDate"
+                                th:field= "*{checkOutDate}"
                                 class = "form-control"
-                                placeholder = "Enter Employee Street and Number of Residence"
+                                placeholder = "Enter Guest Check-Out Date"
                         />
                     </div>
 
                     <div class="form-group">
-                        <label> Job Position </label>
+                        <label> Check-Out Time </label>
                         <input
                                 type = "text"
-                                name= "jobPosition"
-                                th:field= "*{jobPosition}"
+                                name= "checkOutTime"
+                                th:field= "*{checkOutTime}"
                                 class = "form-control"
-                                placeholder = "Enter Employee Job Position"
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label> Job Start Date </label>
-                        <input
-                                type = "text"
-                                name= "jobStartDate"
-                                th:field= "*{jobStartDate}"
-                                class = "form-control"
-                                placeholder = "Enter Employee Job Start Date"
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label> Contract Expiration Date </label>
-                        <input
-                                type = "text"
-                                name= "contractExpirationDate"
-                                th:field= "*{contractExpirationDate}"
-                                class = "form-control"
-                                placeholder = "Enter Employee Contract Expiration Date"
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label> Notes </label>
-                        <input
-                                type = "text"
-                                name= "notes"
-                                th:field= "*{notes}"
-                                class = "form-control"
-                                placeholder = "Enter Employee Notes"
+                                placeholder = "Enter Guest Check-Out Time"
                         />
                     </div>
 

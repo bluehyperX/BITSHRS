@@ -1,5 +1,4 @@
 package com.app.hotelmanagementsystem.service.impl;
-;
 import com.app.hotelmanagementsystem.entity.Guest;
 import com.app.hotelmanagementsystem.entity.Room;
 import com.app.hotelmanagementsystem.repository.RoomRepository;

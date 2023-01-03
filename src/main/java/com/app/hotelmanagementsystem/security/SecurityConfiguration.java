@@ -53,20 +53,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests()
-                .antMatchers("/hms/registration/**", "/js/**", "/css/**", "/img/**").permitAll()
+                .antMatchers("/hrms/registration/**", "/js/**", "/css/**", "/img/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/hms/login")
+                .loginPage("/hrms/login")
                 .successHandler(successHandler)
                 .permitAll()
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/hms/logout"))
-                .logoutSuccessUrl("/hms/login?logout")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/hrms/logout"))
+                .logoutSuccessUrl("/hrms/login?logout")
                 .permitAll();
     }
 

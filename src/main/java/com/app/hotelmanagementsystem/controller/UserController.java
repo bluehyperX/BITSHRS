@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/hms/users")
+@RequestMapping("/hrms/users")
 public class UserController {
 
     private final CustomUserDetailsServiceImpl userService;
@@ -36,7 +36,7 @@ public class UserController {
     @GetMapping("/{userId}")
     public String deleteUser(@PathVariable Long userId) {
         userService.deleteUserById(userId);
-        return "redirect:/hms/users";
+        return "redirect:/hrms/users";
     }
 
     @GetMapping("/new")
@@ -49,7 +49,7 @@ public class UserController {
     @PostMapping("/new")
     public String registerNewUserFromApp(@ModelAttribute("user") User user) {
         userService.registerNewUser(user);
-        return "redirect:/hms/users";
+        return "redirect:/hrms/users";
     }
 
     @GetMapping("/edit/{userId}")
@@ -64,6 +64,6 @@ public class UserController {
     @PostMapping("/edit/save")
     public String saveUser(User user) {
         userService.saveUserWithRole(user);
-        return "redirect:/hms/users";
+        return "redirect:/hrms/users";
     }
 }

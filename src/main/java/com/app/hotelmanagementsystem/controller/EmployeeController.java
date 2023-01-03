@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/hms/employees")
+@RequestMapping("/hrms/employees")
 public class EmployeeController {
 
     private final EmployeeServiceImpl employeeService;
@@ -65,7 +65,7 @@ public class EmployeeController {
     @PostMapping
     public String addNewEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.addNewEmployee(employee);
-        return "redirect:/hms/employees";
+        return "redirect:/hrms/employees";
     }
 
     @GetMapping("/edit/{employeeId}")
@@ -95,13 +95,13 @@ public class EmployeeController {
 
         // save updated guest object
         employeeService.updateEmployee(existingEmployee);
-        return "redirect:/hms/employees";
+        return "redirect:/hrms/employees";
     }
 
     @GetMapping("/{employeeId}")
     public String deleteEmployee(@PathVariable Long employeeId) {
         employeeService.deleteEmployeeById(employeeId);
-        return "redirect:/hms/employees";
+        return "redirect:/hrms/employees";
     }
 
     @GetMapping("/details/{employeeId}")

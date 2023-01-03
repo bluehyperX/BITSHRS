@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>Hotel and Restaurant Management System</title>
+    <!-- first jquery -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script th:src = "@{/js/jquery.min.js}"></script>
+    <!-- then bootstrap js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script> -->
+    <script th:src = "@{/js/bootstrap.min.js}"></script>
+    <!-- css --> 
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link th:href = "@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href = "@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark" th:fragment="header">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/hrms">Hotel and Restaurant Management System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="navbar-collapse collapse w-100" id="navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hrms/hotels/usr}">Hotels</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link bg-dark" th:href="@{/hrms/restaurants/usr}">Restaurant</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" >
+            <li class="nav-item">
+                <a class="nav-link text-white bg-dark" style="margin-left: 270px">Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b></a>
+            </li>
+            
+
+            <li class="nav-item">
+                <a class="nav-link text-white bg-primary" th:href="@{/hrms/dashboard}">Dashboard</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white bg-primary" style="margin-left: 10px" th:href="@{/hrms/logout}">Logout</a>
+            </li>
+
+            
+        </ul>       
+    </div>
+</nav>
+</body>
+</html>

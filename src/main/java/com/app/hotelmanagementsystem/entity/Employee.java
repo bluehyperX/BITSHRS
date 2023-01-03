@@ -1,20 +1,97 @@
 package com.app.hotelmanagementsystem.entity;
 
-import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Builder
 @Table
 public class Employee {
 
-    @Id
+    public Long getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+	public Long getIdNumber() {
+		return idNumber;
+	}
+	public void setIdNumber(Long idNumber) {
+		this.idNumber = idNumber;
+	}
+	public Long getNationalIdentificationNumber() {
+		return nationalIdentificationNumber;
+	}
+	public void setNationalIdentificationNumber(Long nationalIdentificationNumber) {
+		this.nationalIdentificationNumber = nationalIdentificationNumber;
+	}
+	public String getPlaceOfResidence() {
+		return placeOfResidence;
+	}
+	public void setPlaceOfResidence(String placeOfResidence) {
+		this.placeOfResidence = placeOfResidence;
+	}
+	public String getStreetAndNumberOfResidence() {
+		return streetAndNumberOfResidence;
+	}
+	public void setStreetAndNumberOfResidence(String streetAndNumberOfResidence) {
+		this.streetAndNumberOfResidence = streetAndNumberOfResidence;
+	}
+	public String getJobPosition() {
+		return jobPosition;
+	}
+	public void setJobPosition(String jobPosition) {
+		this.jobPosition = jobPosition;
+	}
+	public String getJobStartDate() {
+		return jobStartDate;
+	}
+	public void setJobStartDate(String jobStartDate) {
+		this.jobStartDate = jobStartDate;
+	}
+	public String getContractExpirationDate() {
+		return contractExpirationDate;
+	}
+	public void setContractExpirationDate(String contractExpirationDate) {
+		this.contractExpirationDate = contractExpirationDate;
+	}
+	public String getNotes() {
+		return notes;
+	}
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+	@Id
     @SequenceGenerator(
             name = "employee_sequence",
             sequenceName = "employee_sequence",

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant Management System</title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" th:href="@{/hrms/home}">Restaurant Management System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link bg-dark" th:href="@{/hrms/guests}">Guests</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link bg-dark" th:href="@{/hrms/employees}">Employees</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link bg-dark" th:href="@{/hrms/users}">Registered Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link bg-dark" th:href="@{/hrms/restaurants}">Restaurants</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link bg-dark" th:href="@{/hrms/tables}">Tables</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white bg-dark" style="margin-left: 270px">Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white bg-primary" th:href="@{/hrms/logout}">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<div class="container">
+  <div class="row">
+    <h1> All Tables </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <a th:href="@{/hrms/tables/new}" class="btn btn-primary btn-sm mb-3"> Add table </a>
+      <a th:href="@{/hrms/restaurants}" class="btn btn-primary btn-sm mb-3"> View All Restaurants </a>
+    </div>
+  </div>
+  <table class="table table-striped table-bordered" >
+    <thead class="table-dark">
+    <tr>
+      <th class="text-center"><a th:href="@{'/hrms/tables/page/' + ${currentPage} + '?sortField=name&sortDirection=' + ${reverseSortDirection}}"> Name </a></th>
+      <th class="text-center"><a th:href="@{'/hrms/tables/page/' + ${currentPage} + '?sortField=price&sortDirection=' + ${reverseSortDirection}}"> Price (in USD) </a></th>
+      <th class="text-center"><a th:href="@{'/hrms/tables/page/' + ${currentPage} + '?sortField=restaurant&sortDirection=' + ${reverseSortDirection}}"> Restaurant </a></th>
+      <th class="text-center"> Actions </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="table: ${tables}">
+      <td th:text = "${table.name}"></td>
+      <td th:text = "${table.price}"></td>
+      <td th:text = "${table.restaurant.name}"></td>
+      <td>
+        <a th:href = "@{/hrms/tables/edit/{TableId}(TableId = ${table.TableId})}"
+           class = "btn btn-primary">Update</a>
+
+        <a th:href = "@{/hrms/tables/details/{TableId}(TableId = ${table.TableId})}"
+           class = "btn btn-info">Details </a>
+
+        <a th:href = "@{/hrms/tables/{TableId}(TableId = ${table.TableId})}"
+           class = "btn btn-danger">Delete </a>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+
+</div>
+<br>
+<div style="margin-left: 183px">
+  Total items: [[${totalItems}]] - Page [[${currentPage}]] of [[${totalPages}]]
+  &nbsp;
+</div>
+<br>
+<div style="margin-left: 183px">
+  <a th:if="${currentPage > 1}" th:href="@{'/hrms/tables/page/1?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">First</a>
+  <span th:unless="${currentPage > 1}">First</span> &nbsp;&nbsp;
+
+  <a th:if="${currentPage > 1}" th:href="@{'/hrms/tables/page/' + ${currentPage-1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Previous</a>
+  <span th:unless="${currentPage > 1}">Previous</span> &nbsp;&nbsp;
+
+  <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+        <a th:if="${i != currentPage}" th:href="@{'/hrms/tables/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+        <span th:unless="${i != currentPage}">[[${i}]]</span> &nbsp;&nbsp;
+    </span>
+
+  <a th:if="${currentPage < totalPages}" th:href="@{'/hrms/tables/page/' + ${currentPage+1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Next</a>
+  <span th:unless="${currentPage < totalPages}">Next</span> &nbsp;&nbsp;
+
+  <a th:if="${currentPage < totalPages}" th:href="@{'/hrms/tables/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Last</a>
+  <a th:unless="${currentPage < totalPages}">Last</a>
+</div>
+<br>
+<br>
+<br>
+</body>
+</html>
